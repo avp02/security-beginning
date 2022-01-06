@@ -28,5 +28,5 @@ target/
 hs_err_pid*
 
 # resources
-src/main/resources/*.properties
+src/main/resources/database.properties
 
