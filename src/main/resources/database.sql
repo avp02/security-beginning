@@ -1,15 +1,15 @@
 CREATE TABLE users
 (
-    user_id       INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_name     VARCHAR(255) NOT NULL,
-    user_password VARCHAR(255) NOT NULL
+    id       INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username     VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
 )
     ENGINE InnoDB;
 
 CREATE TABLE roles
 (
-    role_id   INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    role_name VARCHAR(100) NOT NULL
+    id   INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
 )
     ENGINE InnoDB;
 
@@ -17,8 +17,8 @@ CREATE TABLE user_roles
 (
     user_id INT NOT NULL UNIQUE,
     role_id INT NOT NULL UNIQUE,
-    FOREIGN KEY user_roles (user_id) REFERENCES users (user_id),
-    FOREIGN KEY user_roles (role_id) REFERENCES roles (role_id)
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (role_id) REFERENCES roles (id)
 )
     ENGINE InnoDB;
 

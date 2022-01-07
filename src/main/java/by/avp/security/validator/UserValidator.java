@@ -2,16 +2,21 @@ package by.avp.security.validator;
 
 import by.avp.security.model.User;
 import by.avp.security.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+@Component
 public class UserValidator implements Validator {
-    private final UserService userService;
 
-    public UserValidator(UserService userService) {
-        this.userService = userService;
-    }
+    @Autowired
+    private UserService userService;
+
+//    public UserValidator(UserService userService) {
+//        this.userService = userService;
+//    }
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -22,22 +27,22 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         User user = (User) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "Required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "Required");
 
-        if (user.getUserName().length() < 8 || user.getUserName().length() > 32) {
-            errors.rejectValue("userName", "Size.userForm.userName");
+        if (user.getUsername().length() < 8 || user.getUsername().length() > 32) {
+            errors.rejectValue("username", "Size.userForm.username");
         }
 
-        if (userService.findByUserName(user.getUserName()) != null) {
-            errors.rejectValue("userName", "Dublicate.userForm.userName");
+        if (userService.findByUserName(user.getUsername()) != null) {
+            errors.rejectValue("username", "Dublicate.userForm.username");
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userPassword", "Required");
-        if (user.getUserPassword().length() < 8) {
-            errors.rejectValue("userPassword", "Size.userForm.userPassword");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "Required");
+        if (user.getPassword().length() < 8) {
+            errors.rejectValue("password", "Size.userForm.password");
         }
 
-        if (!user.getConfirmPassword().equals(user.getUserPassword())) {
+        if (!user.getConfirmPassword().equals(user.getPassword())) {
             errors.rejectValue("confirmPassword", "Different.userForm.password");
         }
     }
