@@ -14,9 +14,6 @@ public class UserValidator implements Validator {
     @Autowired
     private UserService userService;
 
-//    public UserValidator(UserService userService) {
-//        this.userService = userService;
-//    }
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -33,7 +30,7 @@ public class UserValidator implements Validator {
             errors.rejectValue("username", "Size.userForm.username");
         }
 
-        if (userService.findByUserName(user.getUsername()) != null) {
+        if (userService.findByUsername(user.getUsername()) != null) {
             errors.rejectValue("username", "Dublicate.userForm.username");
         }
 

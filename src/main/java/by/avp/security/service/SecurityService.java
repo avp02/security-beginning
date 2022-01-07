@@ -2,7 +2,7 @@ package by.avp.security.service;
 
 public interface SecurityService {
 
-    String findLoggedInUserName();
+    String findLoggedInUsername();
 
-    void autoLogin(String userName, String password);
+    void autoLogin(String username, String password);
 }

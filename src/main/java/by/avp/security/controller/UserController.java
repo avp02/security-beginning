@@ -53,12 +53,12 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome() {
+    public String welcome(Model model) {
         return "welcome";
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String admin() {
+    public String admin(Model model) {
         return "admin";
     }
 }

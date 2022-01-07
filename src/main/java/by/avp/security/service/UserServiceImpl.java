@@ -13,18 +13,15 @@ import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService{
+
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private RoleRepository roleRepository;
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-//    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
-//        this.userRepository = userRepository;
-//        this.roleRepository = roleRepository;
-//        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-//    }
 
     @Override
     public void saveUser(User user) {
@@ -38,7 +35,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User findByUserName(String userName) {
-        return userRepository.findByUsername(userName);
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }
